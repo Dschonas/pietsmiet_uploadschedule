@@ -19,6 +19,21 @@ title = "Upload-Plan am {:%d.%m.%Y}:".format(today)
 argument = sys.argv
 argumentLen = len(sys.argv)
 
+def correctDate(amountDays):
+	global today, date, urlUploadTodayDate, title
+	today = datetime.date.today()-timedelta(days=amountDays)
+	date = "{:%d-%m-%Y}".format(today)
+	urlUploadTodayDate = urlUploadToday+date
+	title = "Upload-Plan am {:%d.%m.%Y}:".format(today)
+
+def checkArguments():
+	if(argumentLen < 2):
+		outputUploadPlan()
+	elif (argumentLen >= 2):
+		if (argument[1] in("yesterday", "y")):
+			correctDate(1)
+			outputUploadPlan()
+
 def outputUploadPlan():
 	try:
 		print getList()
@@ -45,4 +60,4 @@ def getUrlUploadPlan():
 			return baseUrl[0:-index]+link.get('href')
 
 if __name__ == '__main__':
-	print outputUploadPlan()
+	checkArguments()
