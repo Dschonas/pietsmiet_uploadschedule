@@ -24,6 +24,8 @@ def getUrlContent(url):
 	read = urllib2.urlopen(req)
 	return read.read()
 
+def getSoupOf(urlContent):
+	return BeautifulSoup(urlContent, 'html.parser')
 
 if __name__ == '__main__':
-	print getUrlContent(baseUrl)
+	print getSoupOf(getUrlContent(baseUrl))
