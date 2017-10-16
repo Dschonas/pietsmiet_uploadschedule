@@ -19,6 +19,18 @@ title = "Upload-Plan am {:%d.%m.%Y}:".format(today)
 argument = sys.argv
 argumentLen = len(sys.argv)
 
+def outputUploadPlan():
+	try:
+		print getList()
+	except Exception as e:
+		print "No Upload-Plan yet..."
+
+def getList():
+	sp = getSoupOf(getUrlContent(getUrlUploadPlan())).prettify()
+	start = sp.find(title)
+	end = len(sp)-sp.find(endQuote)
+	return getSoupOf(sp[start:-end]).get_text()
+
 def getUrlContent(url):
 	req = urllib2.Request(url, headers=hdrs)
 	read = urllib2.urlopen(req)
@@ -27,5 +39,10 @@ def getUrlContent(url):
 def getSoupOf(urlContent):
 	return BeautifulSoup(urlContent, 'html.parser')
 
+def getUrlUploadPlan():
+	for link in getSoupOf(getUrlContent(baseUrl)).find_all('a'):
+		if "readmore-link" in str(link.get('class')) and urlUploadTodayDate in str(link.get('href')):
+			return baseUrl[0:-index]+link.get('href')
+
 if __name__ == '__main__':
-	print getSoupOf(getUrlContent(baseUrl))
+	print outputUploadPlan()
