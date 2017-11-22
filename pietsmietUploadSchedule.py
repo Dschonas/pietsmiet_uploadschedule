@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from datetime import timedelta
-import urllib2, sys, datetime
+import urllib3, sys, datetime
 
 # static fields
 hdrs = {'User-Agent' : 'Magic Browser'}
@@ -36,9 +36,9 @@ def checkArguments():
 
 def outputUploadPlan():
 	try:
-		print getList()
+		print (getList())
 	except Exception as e:
-		print "No Upload-Plan yet..."
+		print ("No Upload-Plan yet...")
 
 def getList():
 	sp = getSoupOf(getUrlContent(getUrlUploadPlan())).prettify()
