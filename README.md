@@ -2,8 +2,10 @@
 
 # Installation
 clone the repository
-change into directory
-executing the script
+
+change into the directory
+
+execute the script
 ```
 # python 2
 python pietsmietUploadSchedule.py
