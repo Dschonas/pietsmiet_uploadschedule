@@ -47,9 +47,9 @@ def getList():
 	return getSoupOf(sp[start:-end]).get_text()
 
 def getUrlContent(url):
-	req = urllib2.Request(url, headers=hdrs)
-	read = urllib2.urlopen(req)
-	return read.read()
+	http = urllib3.PoolManager()
+	req = http.request('GET', url)
+	return req.data
 
 def getSoupOf(urlContent):
 	return BeautifulSoup(urlContent, 'html.parser')
