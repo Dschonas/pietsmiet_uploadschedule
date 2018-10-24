@@ -15,6 +15,5 @@ python3 pietsmietUploadSchedule.py
 
 installation of required packages
 ```
-# python 2
 pip install -r requirements.txt
 ```
