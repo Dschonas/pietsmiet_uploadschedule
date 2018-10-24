@@ -3,7 +3,7 @@
 # Installation
 clone the repository
 
-change into the directory
+move into the directory
 
 execute the script
 ```
@@ -13,13 +13,8 @@ python pietsmietUploadSchedule.py
 python3 pietsmietUploadSchedule.py
 ```
 
-packages documented in the requirements.txt
+installation of required packages
 ```
 # python 2
 pip install -r requirements.txt
 ```
-```
-# python 3
-pip3 install -r requirements3.txt
-```
-
